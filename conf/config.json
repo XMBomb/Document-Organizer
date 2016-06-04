@@ -1,0 +1,24 @@
+{
+	"workingDir": "U:\\Work\\Documents",
+	"incomingDir": "\\incoming",
+	"ocrDir": "\\ocr",
+	"outputDir": "\\sorted",
+	"keywords":[
+		{"bill":[
+			{
+				"keyword": ["PC-Ostschweiz", "PCP"],
+				"folderName": "PC-Ostschweiz"
+			},
+			{
+				"keyword": "brack",
+				"folderName": "Brack"
+			}
+		]},
+		{"school":[
+			{
+				"keyword": ["gibs", "BBZ", "Schule"],
+				"folderName": "school"
+			}
+		]}
+	]
+}

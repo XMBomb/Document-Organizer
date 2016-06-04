@@ -34,7 +34,7 @@ public class Config {
 	/**
 	 * default configuration path based on the current docBase
 	 */
-	private static final File DEFAULT_CONF_PATH = new File(ConfigUtil.getDocBase() + "/WEB-INF/conf/incomb_config.json");
+	private static final File DEFAULT_CONF_PATH = new File(ConfigUtil.getDocBase() + "/conf/config.json");
 	private static Config defaultInstance = null;
 
 	/**

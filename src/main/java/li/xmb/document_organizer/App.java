@@ -1,13 +1,16 @@
 package li.xmb.document_organizer;
 
-/**
- * Hello world!
- *
- */
+import java.util.ArrayList;
+
+import li.xmb.document_organizer.config.Config;
+
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( final String[] args )
     {
-        System.out.println( "Hello World!" );
+        final ArrayList<?> keyWords = Config.getDefault().getProperty("keywords", ArrayList.class);
+        for(final Object str : keyWords){
+        	System.out.println(str.getClass());
+        }
     }
 }

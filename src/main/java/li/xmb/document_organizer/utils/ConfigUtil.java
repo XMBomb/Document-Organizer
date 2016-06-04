@@ -1,5 +1,7 @@
 package li.xmb.document_organizer.utils;
 
+import java.nio.file.Paths;
+
 import org.slf4j.LoggerFactory;
 
 import ch.qos.logback.classic.LoggerContext;
@@ -15,12 +17,12 @@ public class ConfigUtil {
 	/**
 	 * Place in the filesystem where the configuration file for Logback is.
 	 */
-	public static final String LOGBACK_CONFIG = "WEB-INF/conf/logback.xml";
+	public static final String LOGBACK_CONFIG = "conf/logback.xml";
 
 	/**
 	 * The absolute path to the document base (WEB-INF) where the configuration files exists.
 	 */
-	private static String docBase = System.getProperty("base.path");
+	private static String docBase = Paths.get(".").toAbsolutePath().normalize().toString();
 
 	/**
 	 * @return the absolute path to the document base (WEB-INF) where the configuration files exists.
