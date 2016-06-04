@@ -14,17 +14,15 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import li.xmb.document_organizer.utils.HtmlUtil;
+import li.xmb.document_organizer.utils.TitleUtil;
 import li.xmb.document_organizer.utils.WhitespaceUtil;
 
 public class TitleFinder {
-	private static final double MULTIPLE_WORD_FACTOR = 2500D;
-	private static final int MIN_SENTENCE_LENGTH = 2;
-	private static final int MAX_SENTENCE_LENGTH = 5;
 	private final int MAX_ORDER_CONFIDENCE_LEVEL = 100;
 	private final int MIN_TEXT_LENGTH = 4;
 	private final String REGEX_VALID_CHARACTERS = "[A-Za-z0-9äöüÄÖÜéèàâî ,.:\"-]+";
 
-	public String findTitleInFile(final Path file) throws IOException {
+	public List<Tag> findTitleInFile(final Path file) throws IOException {
 		final List<Tag> qualifiedElements = new ArrayList<>();
 		final byte[] encoded = Files.readAllBytes(file);
 
@@ -84,24 +82,23 @@ public class TitleFinder {
 			}
 
 		});
+		return qualifiedElements;
 
 //		for (final Tag tag : qualifiedElements) {
 //			System.out.println(tag.getTag().text() + "," + tag.getConfidenceLevel());
 //		}
 
-		 final Tag bestTag = qualifiedElements.get(0);
-//		 for(final Tag tagToTest : qualifiedElements){
-//			 if(bestTag == null || tagToTest.getConfidenceLevel() >
-//			 	bestTag.getConfidenceLevel()){
-//				 bestTag = tagToTest;
-//			 }
-//		 }
-		 return normalizeTitle(bestTag.getTag().text());
+
 		// System.out.println(bestTag.getTag().text()+",
 		// "+bestTag.getConfidenceLevel());
 
 	}
 	
+	public String getBestTitle(final Path file) throws IOException{
+		final List<Tag> qualifiedElements = findTitleInFile(file);
+		final Tag bestTag = qualifiedElements.get(0);
+		return TitleUtil.normalizeTitle(bestTag.getTag().text());
+	}
 	
 //	private boolean isInHeaderTag(final Element tag){
 //		if(tag.parent().tag().getName().contains("h1") || tag.parent().tag().getName().contains("h2")) return true;
@@ -127,7 +124,7 @@ public class TitleFinder {
 	}
 
 	private int getSentenceLengthFactor(final Element tag){
-		final int sentenceLength = replaceSpecialChar(normalizeTitle(tag.text())).split(" ").length;
+		final int sentenceLength = replaceSpecialChar(TitleUtil.normalizeTitle(tag.text())).split(" ").length;
 	
 //		sentenceLength = 1;
 		final int BEST_LENGTH = 4;
@@ -163,9 +160,7 @@ public class TitleFinder {
 		return 0;
 	}
 
-	private String normalizeTitle(final String s){
-		return s.replaceAll("[^A-Za-z0-9äöüÄÖÜéèàâî -]", "").trim();
-	}
+
 
 	private int getWordsFoundThatManyTimesInPageFactor(final Element tag, String fullText) {
 		fullText = WhitespaceUtil.trimAllWhitespace(fullText);
