@@ -44,3 +44,6 @@ Temporary Items
 
 target/
 /tmp/
+
+hs_err_pid17976.log
+*.class
