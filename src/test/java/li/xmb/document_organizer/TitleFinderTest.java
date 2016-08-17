@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
+import li.xmb.document_organizer.title.TitleFinder;
+
 public class TitleFinderTest {
 	@Test
 	public void readTest() throws IOException{
@@ -23,7 +25,10 @@ public class TitleFinderTest {
 //		assertEquals("Medizinischer Fragebogen", finder.getBestTitle(Paths.get("tmp\\KAP_17A1_d_Fragebogen.htm")));
 		assertEquals("Certificate of Proficiency in English", finder.getBestTitle(Paths.get("tmp\\StatementOfResult.htm")));
 		assertEquals("Anlass-Planung", finder.getBestTitle(Paths.get("tmp\\Anlassplanung.htm")));
+//		assertEquals("Rechnung", finder.getBestTitle(Paths.get("tmp\\06062016175425.htm")));
 //		assertEquals("Wehrpflichtersatzabgabe", finder.getBestTitle(Paths.get("tmp\\test.htm")));
 //		assertEquals("Arztzeugnis", finder.getBestTitle(Paths.get("tmp\\04062016160932.htm")));
+		assertEquals("Arztzeugnis", finder.getBestTitle(Paths.get("tmp\\05072016232434.htm")));
+		assertEquals("Arztzeugnis", finder.getBestTitle(Paths.get("tmp\\05072016232411.htm")));
 	}
 }

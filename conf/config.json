@@ -1,8 +1,10 @@
 {
 	"workingDir": "U:\\Work\\Documents",
-	"incomingDir": "\\incoming",
-	"ocrDir": "\\ocr",
-	"outputDir": "\\sorted",
+	"sourceFileDir": "U:\\Work\\Documents\\processed",
+	"ocrDir": "U:\\Work\\Documents\\ocr",
+	"processedOcrDir": "U:\\Work\\Documents\\processedOcr",
+	"ocrFileFormat": "htm",
+	"outputDir": "U:\\Work\\Documents\\sorted",
 	"keywords":[
 		{"bill":[
 			{
@@ -20,5 +22,8 @@
 				"folderName": "school"
 			}
 		]}
-	]
+	],
+	"titleFactors": {
+		"allCaps": -50
+	}
 }
