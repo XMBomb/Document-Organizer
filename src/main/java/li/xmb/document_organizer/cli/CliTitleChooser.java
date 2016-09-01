@@ -23,8 +23,8 @@ public class CliTitleChooser {
 
 		final String choice = getNextChoice();
 		final Tag bestTag = titles.get(Integer.valueOf(choice));
-
-//		System.out.println("You chose (" + choice + "):" + TitleUtil.normalizeTitle(bestTag.getTag().text()));
+//		bestTag = userChangeTag();
+		
 		return bestTag;
 
 	}
@@ -81,5 +81,15 @@ public class CliTitleChooser {
 			}
 		}
 	}
+//	TODO: this
+//	private Tag userChangeTag(Tag tag){
+//		System.out.println("Using \""+tag.getNormalizedText()+"\" type something to change it or nothing to proceed");
+//		String changes = scn.nextLine();
+//		if (CustomStringUtil.trimAllWhitespace(changes).length() > 0){
+//			Tag newTag = new Tag(tag.getTag());
+////			newTag.
+////			return ;
+//		}
+//	}
 
 }

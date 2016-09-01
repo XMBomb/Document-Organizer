@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<main>
+	<category folder-name="Bills">
+		<folder folder-name="PC-Ostschweiz">
+			<keyword>PC-Ostschweiz</keyword>
+			<keyword>PCP</keyword>
+			<folder folder-name="Rechnung">
+				<keyword>Rechnung</keyword>
+			</folder>
+		</folder>
+		<folder folder-name="Brack">
+			<keyword>Brack</keyword>
+		</folder>
+	</category>
+	<category folder-name="School">
+		<folder folder-name="BBZ">
+			<keyword>gibs</keyword>
+			<keyword>BBZ</keyword>
+			<keyword>Schule</keyword>
+		</folder>
+	</category>
+</main>

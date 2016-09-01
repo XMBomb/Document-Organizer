@@ -1,29 +1,25 @@
 {
-	"workingDir": "U:\\Work\\Documents",
-	"sourceFileDir": "U:\\Work\\Documents\\processed",
-	"ocrDir": "U:\\Work\\Documents\\ocr",
-	"processedOcrDir": "U:\\Work\\Documents\\processedOcr",
-	"ocrFileFormat": "htm",
-	"outputDir": "U:\\Work\\Documents\\sorted",
-	"keywords":[
-		{"bill":[
-			{
-				"keyword": ["PC-Ostschweiz", "PCP"],
-				"folderName": "PC-Ostschweiz"
-			},
-			{
-				"keyword": "brack",
-				"folderName": "Brack"
-			}
-		]},
-		{"school":[
-			{
-				"keyword": ["gibs", "BBZ", "Schule"],
-				"folderName": "school"
-			}
-		]}
-	],
-	"titleFactors": {
-		"allCaps": -50
-	}
+    "workingDir": "U:\\Work\\Documents",
+    "sourceFileDir": "U:\\Work\\Documents\\processed",
+    "ocrDir": "U:\\Work\\Documents\\ocr",
+    "processedOcrDir": "U:\\Work\\Documents\\processedOcr",
+    "ocrFileFormat": "htm",
+    "outputDir": "U:\\Work\\Documents\\sorted",
+    "keywords": [{
+        "Bills": [{
+            "keywords": ["PC-Ostschweiz", "PCP"],
+            "folderName": "PC-Ostschweiz"
+        }, {
+            "keywords": ["brack"],
+            "folderName": "Brack"
+        }]
+    }, {
+        "School": [{
+            "keywords": ["gibs", "BBZ", "Schule"],
+            "folderName": "school"
+        }]
+    }],
+    "titleFactors": {
+        "allCaps": -50
+    }
 }
