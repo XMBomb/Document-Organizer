@@ -20,7 +20,7 @@ public class OcrReader {
 	*/
 	private static final Logger LOGGER = LoggerFactory.getLogger(OcrReader.class);
 
-	private final KeywordParser keywordParser = new KeywordParser();
+//	private final KeywordParser keywordParser = new KeywordParser();
 	
 	public static final String OCR_DIR = Config.getDefault().getStringProperty("ocrDir");
 	public static final String OCR_FILE_FORMAT = Config.getDefault().getStringProperty("ocrFileFormat");
@@ -67,7 +67,7 @@ public class OcrReader {
 	
 	private final void renameFile(final File file, final String newName){
 		final String fileName = OUTPUT_DIR+File.separator+newName+"."+FileUtil.getFileExtension(file);
-//		TODO: handle non existant paths 
+//		TODO: handle non existent paths 
 		file.renameTo(new File(fileName));
 		LOGGER.info("Renamed file to {}", fileName);
 	}
