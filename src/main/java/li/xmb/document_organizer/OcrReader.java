@@ -33,6 +33,7 @@ public class OcrReader {
 	public final void readAllFiles() throws IOException{
 		final File folder = new File(OCR_DIR);
 		for(final File foundFile : folder.listFiles()){
+			LOGGER.info("Processing file {}", foundFile.getName());
 			// only accept the right file format
 			if(FileUtil.getFileExtension(foundFile).equals(OCR_FILE_FORMAT)){
 				findTitleOfFile(foundFile.toPath());
@@ -44,8 +45,8 @@ public class OcrReader {
 		final TitleFinder finder = new TitleFinder();
 		final List<Tag> tags = finder.findTitleInFile(ocrFile);
 		final CliTitleChooser cliHandler = new CliTitleChooser(tags);
-		final Tag chosenTitleTag = cliHandler.decideTitle();
-		final String newFileName = chosenTitleTag.getFilenameText();
+
+		final String newFileName = cliHandler.decideTitle();
 		LOGGER.info("Using {} for the filename", newFileName);
 		final File sourceFile = findCorrespondingSourceFile(ocrFile.toFile());
 		renameFile(sourceFile, newFileName);

@@ -1,10 +1,10 @@
 {
-    "workingDir": "U:\\Work\\Documents",
-    "sourceFileDir": "U:\\Work\\Documents\\processed",
-    "ocrDir": "U:\\Work\\Documents\\ocr",
-    "processedOcrDir": "U:\\Work\\Documents\\processedOcr",
+    "workingDir": "U:\\Work\\Documents\\organizer",
+    "sourceFileDir": "U:\\Work\\Documents\\organizer\\processed",
+    "ocrDir": "U:\\Work\\Documents\\organizer\\ocr",
+    "processedOcrDir": "U:\\Work\\Documents\\organizer\\processedOcr",
     "ocrFileFormat": "htm",
-    "outputDir": "U:\\Work\\Documents\\sorted",
+    "outputDir": "U:\\Work\\Documents\\organizer\\sorted",
     "keywords": [{
         "Bills": [{
             "keywords": ["PC-Ostschweiz", "PCP"],

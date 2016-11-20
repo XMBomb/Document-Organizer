@@ -3,6 +3,8 @@ package li.xmb.document_organizer.cli;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import li.xmb.document_organizer.beans.Tag;
 import li.xmb.document_organizer.title.utils.TitleUtil;
 
@@ -18,19 +20,21 @@ public class CliTitleChooser {
 		this.titles = titles;
 	}
 	
-	public Tag decideTitle() {
+	public String decideTitle() {
 		initInfo();
 
 		final String choice = getNextChoice();
-		final Tag bestTag = titles.get(Integer.valueOf(choice));
-//		bestTag = userChangeTag();
-		
-		return bestTag;
+		 final Tag bestTag;
+		if (NumberUtils.isNumber(choice)){
+			 return titles.get(Integer.valueOf(choice)).getFilenameText();
+		}else{
+			return TitleUtil.getFilenameFromTitle(choice);
+		}
 
 	}
 	
 	private void initInfo(){
-		System.out.println("Choose the title from the following list or press 'n' to show the next "+NUM_LIST_ITEMS+", go back with 'b'.\n"
+		System.out.println("Choose the title from the following list or press 'n' to show the next "+NUM_LIST_ITEMS+", go back with 'b' enter custom title with 'c'.\n"
 				+ "_____________________________________________________________________________\n");
 		getNextItems();
 	}
@@ -56,6 +60,10 @@ public class CliTitleChooser {
 				}
 				choice = getNextChoice();
 
+				break;
+			case "c":
+				System.out.println("Enter custom title: ");
+				choice = scn.next() + scn.nextLine();
 				break;
 		default:
 				final int choiceNum;

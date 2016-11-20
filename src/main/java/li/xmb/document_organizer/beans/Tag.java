@@ -16,6 +16,9 @@ public class Tag implements Comparable<Tag>{
 		super();
 		this.tag = tag;
 	}
+	
+	public Tag() {
+	}
 
 	public Element getTag() {
 		return tag;
