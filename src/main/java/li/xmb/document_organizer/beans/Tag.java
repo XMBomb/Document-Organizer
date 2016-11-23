@@ -1,7 +1,7 @@
 package li.xmb.document_organizer.beans;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.jsoup.nodes.Element;
 
@@ -10,7 +10,7 @@ import li.xmb.document_organizer.title.utils.TitleUtil;
 public class Tag implements Comparable<Tag>{
 	private Element tag;
 	private int confidenceLevel;
-	private final Map<String, Integer> confidenceReasons = new HashMap<>();
+	private final List<ConfidenceReason> confidenceReasons = new ArrayList<>();
 
 	public Tag(final Element tag) {
 		super();
@@ -33,20 +33,20 @@ public class Tag implements Comparable<Tag>{
 	}
 
 	public void increaseConfidenceLevel(final int amount, final String propertyName) {
+		this.confidenceReasons.add( new ConfidenceReason(amount, propertyName) );
 		this.confidenceLevel += amount;
-		addConfidenceReason(propertyName, amount);
 	}
 
 	public void setConfidenceLevel(final int confidenceLevel) {
 		this.confidenceLevel = confidenceLevel;
 	}
 
-	public Map<String, Integer> getConfidenceReasons() {
+	public List<ConfidenceReason> getConfidenceReasons() {
 		return confidenceReasons;
 	}
 	
-	public void addConfidenceReason(final String name, final int value){
-		this.confidenceReasons.put(name, value);
+	public void addConfidenceReason(ConfidenceReason reason){
+		this.confidenceReasons.add(reason);
 	}
 	
 	public String getNormalizedText(){
