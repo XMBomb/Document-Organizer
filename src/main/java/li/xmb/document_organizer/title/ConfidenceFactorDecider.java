@@ -7,6 +7,7 @@ public class ConfidenceFactorDecider {
 	public static final int MIN_FACTOR = 0;
 	public static final int MAX_FACTOR = 100;
 	
+	public static final int MIN_TEXT_LENGTH = 4;
 
 	public static double getImportanceBasedConfidenceFactor ( IConfidenceFactor factor )
 	{

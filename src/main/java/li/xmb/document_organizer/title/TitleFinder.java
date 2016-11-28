@@ -17,16 +17,14 @@ import li.xmb.document_organizer.beans.Tag;
 import li.xmb.document_organizer.title.confidence_factor.IConfidenceFactor;
 import li.xmb.document_organizer.title.confidence_factor.InHtmlTdConfidenceFactor;
 import li.xmb.document_organizer.title.confidence_factor.SentenceLengthConfidenceFactor;
+import li.xmb.document_organizer.title.confidence_factor.ValidTextConfidenceFactor;
 import li.xmb.document_organizer.title.utils.TitleUtil;
 import li.xmb.document_organizer.utils.CustomStringUtil;
-import li.xmb.document_organizer.utils.HtmlUtil;
 import li.xmb.document_organizer.utils.TagUtil;
 
 public class TitleFinder {
 	private static final String VALID_TAG_TYPE = "font";
 	private final int MAX_ORDER_CONFIDENCE_LEVEL = 100;
-	private final int MIN_TEXT_LENGTH = 4;
-	private final String REGEX_VALID_CHARACTERS = "[A-Za-z0-9äöüÄÖÜéèàâî ,.:\"-]+";
 
 	public List<Tag> findTitleInFile(final Path file) throws IOException {
 		final List<Tag> qualifiedElements = new ArrayList<>();
@@ -141,14 +139,9 @@ public class TitleFinder {
 
 	
 	private int getTextValidityFactor(final Element tag) {
-		final String text = CustomStringUtil.trimAllWhitespace(HtmlUtil.removeTags(tag.text(), false));
-		if (text.length() < MIN_TEXT_LENGTH){
-			return 0;
-		}
-		if (text.matches(REGEX_VALID_CHARACTERS)) {
-			return 100;
-		}
-		return 0;
+			IConfidenceFactor factor = new ValidTextConfidenceFactor( tag );
+		
+		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
 	}
 
 
@@ -156,7 +149,7 @@ public class TitleFinder {
 	private int getWordsFoundThatManyTimesInPageFactor(final Element tag, String fullText) {
 		fullText = CustomStringUtil.trimAllWhitespace(fullText);
 		final String textToFind = CustomStringUtil.trimAllWhitespace(tag.text());
-		if (textToFind.length() < MIN_TEXT_LENGTH) {
+		if (textToFind.length() < ConfidenceFactorDecider.MIN_TEXT_LENGTH) {
 			return 0;
 		}
 
@@ -175,7 +168,7 @@ public class TitleFinder {
 	}
 
 	private boolean isTextLengthBigEnough(final Element tag) {
-		return tag.text().length() >= MIN_TEXT_LENGTH;
+		return tag.text().length() >= ConfidenceFactorDecider.MIN_TEXT_LENGTH;
 	}
 
 	private int normalizeOrderFactor(final int listSize, final int factor) {
