@@ -52,4 +52,8 @@ public class HtmlUtil {
 
 		return returnValue;
 	}
+	
+	public static String removeSpecialChars(final String s){
+		return s.replaceAll("-", " ");
+	}
 }

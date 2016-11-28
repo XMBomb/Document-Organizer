@@ -19,7 +19,7 @@
             "folderName": "school"
         }]
     }],
-    "titleFactors": {
-        "allCaps": -50
+    "confidence": {
+        "InHtmlTdConfidenceFactor": 0.5
     }
 }

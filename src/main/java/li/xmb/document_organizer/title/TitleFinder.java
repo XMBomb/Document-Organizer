@@ -14,9 +14,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import li.xmb.document_organizer.beans.Tag;
+import li.xmb.document_organizer.title.confidence_factor.IConfidenceFactor;
+import li.xmb.document_organizer.title.confidence_factor.InHtmlTdConfidenceFactor;
+import li.xmb.document_organizer.title.confidence_factor.SentenceLengthConfidenceFactor;
 import li.xmb.document_organizer.title.utils.TitleUtil;
-import li.xmb.document_organizer.utils.HtmlUtil;
 import li.xmb.document_organizer.utils.CustomStringUtil;
+import li.xmb.document_organizer.utils.HtmlUtil;
 import li.xmb.document_organizer.utils.TagUtil;
 
 public class TitleFinder {
@@ -120,32 +123,22 @@ public class TitleFinder {
 	}
 	
 	private int getTagValidityFactor(final Element tag){
-		if(!tag.parent().parent().tagName().contains("td")){
-			return 50;
-		}
-		return 0;
+		IConfidenceFactor factor = new InHtmlTdConfidenceFactor( tag );
+		
+		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
+//		
+//		if(!tag.parent().parent().tagName().contains("td")){
+//			return 50;
+//		}
+//		return 0;
 	}
 
 	private int getSentenceLengthFactor(final Element tag){
-		final int sentenceLength = replaceSpecialChar(TitleUtil.normalizeTitle(tag.text())).split(" ").length;
-	
-		final int BEST_LENGTH = 4;
-		final int EXPONENTIAL_FACTOR = 2;
-		final int MAX_FACTOR = 100;
-		final int DEDUCTION_FACTOR = 6;
+		IConfidenceFactor factor = new SentenceLengthConfidenceFactor( tag );
 		
-		final int factor =(int) (-Math.pow((sentenceLength -BEST_LENGTH),EXPONENTIAL_FACTOR) * DEDUCTION_FACTOR + MAX_FACTOR);
-		
-		if (factor>0){
-			return factor;
-		}
+		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
+	}
 
-		return 0;
-	}
-	
-	private String replaceSpecialChar(final String s){
-		return s.replaceAll("-", " ");
-	}
 	
 	private int getTextValidityFactor(final Element tag) {
 		final String text = CustomStringUtil.trimAllWhitespace(HtmlUtil.removeTags(tag.text(), false));
