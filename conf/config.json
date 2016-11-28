@@ -20,6 +20,9 @@
         }]
     }],
     "confidence": {
-        "InHtmlTdConfidenceFactor": 0.5
+        "InHtmlTdConfidenceFactor": 0.5,
+        "ValidTextConfidenceFactor": 1,
+        "SentenceLengthConfidenceFactor": 1,
+        "WordFoundManyTimesConfidenceFactor": 1
     }
 }

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -18,8 +17,8 @@ import li.xmb.document_organizer.title.confidence_factor.IConfidenceFactor;
 import li.xmb.document_organizer.title.confidence_factor.InHtmlTdConfidenceFactor;
 import li.xmb.document_organizer.title.confidence_factor.SentenceLengthConfidenceFactor;
 import li.xmb.document_organizer.title.confidence_factor.ValidTextConfidenceFactor;
+import li.xmb.document_organizer.title.confidence_factor.WordFoundManyTimesConfidenceFactor;
 import li.xmb.document_organizer.title.utils.TitleUtil;
-import li.xmb.document_organizer.utils.CustomStringUtil;
 import li.xmb.document_organizer.utils.TagUtil;
 
 public class TitleFinder {
@@ -147,24 +146,27 @@ public class TitleFinder {
 
 
 	private int getWordsFoundThatManyTimesInPageFactor(final Element tag, String fullText) {
-		fullText = CustomStringUtil.trimAllWhitespace(fullText);
-		final String textToFind = CustomStringUtil.trimAllWhitespace(tag.text());
-		if (textToFind.length() < ConfidenceFactorDecider.MIN_TEXT_LENGTH) {
-			return 0;
-		}
-
-		int count = 0;
-
-		count = StringUtils.countMatches(fullText, textToFind);
+		IConfidenceFactor factor = new WordFoundManyTimesConfidenceFactor( fullText, tag );
 		
-		final int BEST_COUNT = 4;
-		final int EXPONENTIAL_FACTOR = 2;
-		final int MAX_FACTOR = 100;
-		final int DEDUCTION_FACTOR = 3;
-		
-		final int factor =(int) (-Math.pow((count -BEST_COUNT),EXPONENTIAL_FACTOR) * DEDUCTION_FACTOR + MAX_FACTOR);
-		
-		return factor;
+		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
+//		fullText = CustomStringUtil.trimAllWhitespace(fullText);
+//		final String textToFind = CustomStringUtil.trimAllWhitespace(tag.text());
+//		if (textToFind.length() < ConfidenceFactorDecider.MIN_TEXT_LENGTH) {
+//			return 0;
+//		}
+//
+//		int count = 0;
+//
+//		count = StringUtils.countMatches(fullText, textToFind);
+//		
+//		final int BEST_COUNT = 4;
+//		final int EXPONENTIAL_FACTOR = 2;
+//		final int MAX_FACTOR = 100;
+//		final int DEDUCTION_FACTOR = 3;
+//		
+//		final int factor =(int) (-Math.pow((count -BEST_COUNT),EXPONENTIAL_FACTOR) * DEDUCTION_FACTOR + MAX_FACTOR);
+//		
+//		return factor;
 	}
 
 	private boolean isTextLengthBigEnough(final Element tag) {
