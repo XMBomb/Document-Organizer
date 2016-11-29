@@ -23,6 +23,8 @@
         "InHtmlTdConfidenceFactor": 0.5,
         "ValidTextConfidenceFactor": 1,
         "SentenceLengthConfidenceFactor": 1,
-        "WordFoundManyTimesConfidenceFactor": 1
+        "WordFoundManyTimesConfidenceFactor": 1,
+        "AllCapsConfidenceFactor": -0.5,
+        "TextLengthConfidenceFactor": 0.5
     }
 }

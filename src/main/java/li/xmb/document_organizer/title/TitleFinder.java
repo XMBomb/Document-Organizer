@@ -44,13 +44,13 @@ public class TitleFinder {
 //			if (isInHeaderTag(tag)){
 //				qualifiedTag.increaseConfidenceLevel(75, "headerTag");
 //			}
-			if (TagUtil.isAllCaps(tag)) {
-				qualifiedTag.increaseConfidenceLevel(-50, "allCaps");
-			}
+//			if (TagUtil.isAllCaps(tag)) {
+//				qualifiedTag.increaseConfidenceLevel(-50, "allCaps");
+//			}
 			
-			qualifiedTag.increaseConfidenceLevel(getSentenceLengthFactor(tag), "sentenceLength");
+//			qualifiedTag.increaseConfidenceLevel(getSentenceLengthFactor(tag), "sentenceLength");
 
-			qualifiedTag.increaseConfidenceLevel(getWordsFoundThatManyTimesInPageFactor(tag, doc.text()), "wordsFoundThatManyTimesInPageFactor");
+//			qualifiedTag.increaseConfidenceLevel(getWordsFoundThatManyTimesInPageFactor(tag, doc.text()), "wordsFoundThatManyTimesInPageFactor");
 
 			if (isTextLengthBigEnough(tag)) {
 				qualifiedTag.increaseConfidenceLevel(50, "textLength");
