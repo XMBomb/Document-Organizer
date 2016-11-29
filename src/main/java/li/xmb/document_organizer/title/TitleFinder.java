@@ -15,9 +15,6 @@ import org.jsoup.select.Elements;
 import li.xmb.document_organizer.beans.Tag;
 import li.xmb.document_organizer.title.confidence_factor.IConfidenceFactor;
 import li.xmb.document_organizer.title.confidence_factor.InHtmlTdConfidenceFactor;
-import li.xmb.document_organizer.title.confidence_factor.SentenceLengthConfidenceFactor;
-import li.xmb.document_organizer.title.confidence_factor.ValidTextConfidenceFactor;
-import li.xmb.document_organizer.title.confidence_factor.WordFoundManyTimesConfidenceFactor;
 import li.xmb.document_organizer.title.utils.TitleUtil;
 import li.xmb.document_organizer.utils.TagUtil;
 
@@ -52,11 +49,11 @@ public class TitleFinder {
 
 //			qualifiedTag.increaseConfidenceLevel(getWordsFoundThatManyTimesInPageFactor(tag, doc.text()), "wordsFoundThatManyTimesInPageFactor");
 
-			if (isTextLengthBigEnough(tag)) {
-				qualifiedTag.increaseConfidenceLevel(50, "textLength");
-			}
-			
-			qualifiedTag.increaseConfidenceLevel(getTextValidityFactor(tag), "validCharacters");
+//			if (isTextLengthBigEnough(tag)) {
+//				qualifiedTag.increaseConfidenceLevel(50, "textLength");
+//			}
+//			
+//			qualifiedTag.increaseConfidenceLevel(getTextValidityFactor(tag), "validCharacters");
 
 			if (tag.hasAttr("style")) {
 				qualifiedTag.increaseConfidenceLevel(10, "hasStyle");
@@ -129,49 +126,49 @@ public class TitleFinder {
 //		}
 //		return 0;
 	}
-
-	private int getSentenceLengthFactor(final Element tag){
-		IConfidenceFactor factor = new SentenceLengthConfidenceFactor( tag );
-		
-		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
-	}
-
-	
-	private int getTextValidityFactor(final Element tag) {
-			IConfidenceFactor factor = new ValidTextConfidenceFactor( tag );
-		
-		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
-	}
-
-
-
-	private int getWordsFoundThatManyTimesInPageFactor(final Element tag, String fullText) {
-		IConfidenceFactor factor = new WordFoundManyTimesConfidenceFactor( fullText, tag );
-		
-		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
-//		fullText = CustomStringUtil.trimAllWhitespace(fullText);
-//		final String textToFind = CustomStringUtil.trimAllWhitespace(tag.text());
-//		if (textToFind.length() < ConfidenceFactorDecider.MIN_TEXT_LENGTH) {
-//			return 0;
-//		}
 //
-//		int count = 0;
+//	private int getSentenceLengthFactor(final Element tag){
+//		IConfidenceFactor factor = new SentenceLengthConfidenceFactor( tag );
+//		
+//		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
+//	}
 //
-//		count = StringUtils.countMatches(fullText, textToFind);
+//	
+//	private int getTextValidityFactor(final Element tag) {
+//			IConfidenceFactor factor = new ValidTextConfidenceFactor( tag );
 //		
-//		final int BEST_COUNT = 4;
-//		final int EXPONENTIAL_FACTOR = 2;
-//		final int MAX_FACTOR = 100;
-//		final int DEDUCTION_FACTOR = 3;
-//		
-//		final int factor =(int) (-Math.pow((count -BEST_COUNT),EXPONENTIAL_FACTOR) * DEDUCTION_FACTOR + MAX_FACTOR);
-//		
-//		return factor;
-	}
+//		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
+//	}
+//
 
-	private boolean isTextLengthBigEnough(final Element tag) {
-		return tag.text().length() >= ConfidenceFactorDecider.MIN_TEXT_LENGTH;
-	}
+
+//	private int getWordsFoundThatManyTimesInPageFactor(final Element tag, String fullText) {
+//		IConfidenceFactor factor = new WordFoundManyTimesConfidenceFactor( fullText, tag );
+//		
+//		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
+////		fullText = CustomStringUtil.trimAllWhitespace(fullText);
+////		final String textToFind = CustomStringUtil.trimAllWhitespace(tag.text());
+////		if (textToFind.length() < ConfidenceFactorDecider.MIN_TEXT_LENGTH) {
+////			return 0;
+////		}
+////
+////		int count = 0;
+////
+////		count = StringUtils.countMatches(fullText, textToFind);
+////		
+////		final int BEST_COUNT = 4;
+////		final int EXPONENTIAL_FACTOR = 2;
+////		final int MAX_FACTOR = 100;
+////		final int DEDUCTION_FACTOR = 3;
+////		
+////		final int factor =(int) (-Math.pow((count -BEST_COUNT),EXPONENTIAL_FACTOR) * DEDUCTION_FACTOR + MAX_FACTOR);
+////		
+////		return factor;
+//	}
+//
+//	private boolean isTextLengthBigEnough(final Element tag) {
+//		return tag.text().length() >= ConfidenceFactorDecider.MIN_TEXT_LENGTH;
+//	}
 
 	private int normalizeOrderFactor(final int listSize, final int factor) {
 		return (factor * MAX_ORDER_CONFIDENCE_LEVEL) / listSize;

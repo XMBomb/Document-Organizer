@@ -25,6 +25,18 @@
         "SentenceLengthConfidenceFactor": 1,
         "WordFoundManyTimesConfidenceFactor": 1,
         "AllCapsConfidenceFactor": -0.5,
-        "TextLengthConfidenceFactor": 0.5
+        "TextLengthConfidenceFactor": 0.5,
+        "fontSizeConfidenceFactor": {
+        	"factor": 1,
+        	"params": [
+	        	{"xx-small", -100},
+				{"x-small", -50},
+				{"small", -25},
+				{"medium", 0},
+				{"large", 15},
+				{"x-large", 20},
+				{"xx-large", 0}
+			]
+        }
     }
 }
