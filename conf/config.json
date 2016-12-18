@@ -1,42 +1,42 @@
 {
-    "workingDir": "U:\\Work\\Documents\\organizer",
-    "sourceFileDir": "U:\\Work\\Documents\\organizer\\processed",
-    "ocrDir": "U:\\Work\\Documents\\organizer\\ocr",
-    "processedOcrDir": "U:\\Work\\Documents\\organizer\\processedOcr",
-    "ocrFileFormat": "htm",
-    "outputDir": "U:\\Work\\Documents\\organizer\\sorted",
-    "keywords": [{
-        "Bills": [{
-            "keywords": ["PC-Ostschweiz", "PCP"],
-            "folderName": "PC-Ostschweiz"
-        }, {
-            "keywords": ["brack"],
-            "folderName": "Brack"
-        }]
-    }, {
-        "School": [{
-            "keywords": ["gibs", "BBZ", "Schule"],
-            "folderName": "school"
-        }]
-    }],
-    "confidence": {
-        "InHtmlTdConfidenceFactor": 0.5,
-        "ValidTextConfidenceFactor": 1,
-        "SentenceLengthConfidenceFactor": 1,
-        "WordFoundManyTimesConfidenceFactor": 1,
-        "AllCapsConfidenceFactor": -0.5,
-        "TextLengthConfidenceFactor": 0.5,
-        "fontSizeConfidenceFactor": {
-        	"factor": 1,
-        	"params": [
-	        	{"xx-small", -100},
-				{"x-small", -50},
-				{"small", -25},
-				{"medium", 0},
-				{"large", 15},
-				{"x-large", 20},
-				{"xx-large", 0}
+	"workingDir": "U:\\Work\\Documents\\organizer",
+	"sourceFileDir": "U:\\Work\\Documents\\organizer\\processed",
+	"ocrDir": "U:\\Work\\Documents\\organizer\\ocr",
+	"processedOcrDir": "U:\\Work\\Documents\\organizer\\processedOcr",
+	"ocrFileFormat": "htm",
+	"outputDir": "U:\\Work\\Documents\\organizer\\sorted",
+	"keywords": [{
+		"Bills": [{
+			"keywords": ["PC-Ostschweiz", "PCP"],
+			"folderName": "PC-Ostschweiz"
+		}, {
+			"keywords": ["brack"],
+			"folderName": "Brack"
+		}]
+	}, {
+		"School": [{
+			"keywords": ["gibs", "BBZ", "Schule"],
+			"folderName": "school"
+		}]
+	}],
+	"confidence": {
+		"InHtmlTdConfidenceFactor": 0.5,
+		"ValidTextConfidenceFactor": 1,
+		"SentenceLengthConfidenceFactor": 1,
+		"WordFoundManyTimesConfidenceFactor": 1,
+		"AllCapsConfidenceFactor": -0.5,
+		"TextLengthConfidenceFactor": 0.5,
+		"fontSizeConfidenceFactor": {
+			"factor": 1,
+			"params": [
+				["xx-small", -100],
+				["x-small", -50],
+				["small", -25],
+				["medium", 0],
+				["large", 15],
+				["x-large", 20],
+				["xx-large", 0]
 			]
-        }
-    }
+		}
+	}
 }

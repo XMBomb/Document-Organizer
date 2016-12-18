@@ -42,7 +42,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-target/
+target/*
 /tmp/
 
 hs_err_pid17976.log

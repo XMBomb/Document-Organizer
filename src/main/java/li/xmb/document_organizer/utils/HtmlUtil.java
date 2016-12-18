@@ -19,6 +19,8 @@ public class HtmlUtil {
 	 */
 	public static final Pattern REMOVE_TAGS_PATTERN = Pattern.compile("<[^>]+>", Pattern.MULTILINE);
 
+	public static final String STYLE_ATTRIBUTE = "style";
+
 	/**
 	 * Private constructor because the class contains only static helper methods.
 	 * Does nothing.

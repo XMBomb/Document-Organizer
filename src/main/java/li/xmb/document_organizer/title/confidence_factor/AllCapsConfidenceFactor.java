@@ -7,10 +7,9 @@ import li.xmb.document_organizer.utils.TagUtil;
 
 public class AllCapsConfidenceFactor implements IConfidenceFactor
 {
-	private Element htmlElement;
+	private final Element htmlElement;
 
-	public AllCapsConfidenceFactor (Element htmlElement)
-	{
+	public AllCapsConfidenceFactor(final Element htmlElement) {
 		this.htmlElement = htmlElement;
 	}
 
