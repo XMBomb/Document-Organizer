@@ -6,20 +6,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class App {
-	/**
-	 * <p>
-	 * The {@link Logger} for this class.
-	 * </p>
-	 */
-	private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+	private static final Logger logger = LoggerFactory.getLogger(App.class);
 
-	public static void main(final String[] args) {		
+	public static void main(final String[] args) {
+		App app = new App();
+		app.init();
+	}
+
+	private void init() {
 		try {
 			final OcrReader ocrReader = new OcrReader();
 			ocrReader.readAllFiles();
 		} catch (final IOException e) {
-			LOGGER.error(e.getMessage());
-			e.printStackTrace();
+			logger.error("General error", e);
 		}
 	}
 }

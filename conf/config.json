@@ -20,13 +20,43 @@
 		}]
 	}],
 	"confidence": {
-		"InHtmlTdConfidenceFactor": 0.5,
-		"ValidTextConfidenceFactor": 1,
-		"SentenceLengthConfidenceFactor": 1,
-		"WordFoundManyTimesConfidenceFactor": 1,
-		"AllCapsConfidenceFactor": -0.5,
-		"TextLengthConfidenceFactor": 0.5,
-		"fontSizeConfidenceFactor": {
+		"InHtmlTdConfidenceFactor": {
+			"factor": 0.5,
+			"params": []
+		},
+		"ValidTextConfidenceFactor": {
+			"factor": 1,
+			"params": []
+		},
+		"SentenceLengthConfidenceFactor": {
+			"factor": 1,
+			"params": []
+		},
+		"WordFoundManyTimesConfidenceFactor": {
+			"factor": 1,
+			"params": []
+		},
+		"AllCapsConfidenceFactor": {
+			"factor": -0.5,
+			"params": []
+		},
+		"TextLengthConfidenceFactor": {
+			"factor": 0.5,
+			"params": []
+		},
+		"FontWeightConfidenceFactor": {
+			"factor": 0.25,
+			"params": []
+		},
+		"FontItalicConfidenceFactor": {
+			"factor": -0.5,
+			"params": []
+		},
+		"FontUnderlinedConfidenceFactor": {
+			"factor": 0.5,
+			"params": []
+		},
+		"FontSizeConfidenceFactor": {
 			"factor": 1,
 			"params": [
 				["xx-small", -100],

@@ -60,15 +60,15 @@ public class TitleFinder {
 				if (TagUtil.hasFontSize(tag)) {
 					qualifiedTag.increaseConfidenceLevel(getFontSizeFactor(tag), "fontSizeFactor");
 				}
-				if (TagUtil.isBold(tag)) {
-					qualifiedTag.increaseConfidenceLevel(25, "isBold");
-				}
-				if (TagUtil.isItalic(tag)) {
-					qualifiedTag.increaseConfidenceLevel(-50, "isItalic");
-				}
-				if (TagUtil.isUnderlined(tag)) {
-					qualifiedTag.increaseConfidenceLevel(50, "isUnderlined");
-				}
+//				if (TagUtil.isBold(tag)) {
+//					qualifiedTag.increaseConfidenceLevel(25, "isBold");
+//				}
+//				if (TagUtil.isItalic(tag)) {
+//					qualifiedTag.increaseConfidenceLevel(-50, "isItalic");
+//				}
+//				if (TagUtil.isUnderlined(tag)) {
+//					qualifiedTag.increaseConfidenceLevel(50, "isUnderlined");
+//				}
 			}
 			qualifiedTag.increaseConfidenceLevel(normalizeOrderFactor(foundTags.size(), orderFactor), "order");
 			qualifiedElements.add(qualifiedTag);
@@ -100,10 +100,7 @@ public class TitleFinder {
 		return TitleUtil.normalizeTitle(bestTag.getTag().text());
 	}
 	
-//	private boolean isInHeaderTag(final Element tag){
-//		if(tag.parent().tag().getName().contains("h1") || tag.parent().tag().getName().contains("h2")) return true;
-//		return false;
-//	}
+
 //	TODO:useless
 	private Elements findValidTags(final Document doc) {
 		final Elements elements  = doc.select(VALID_TAG_TYPE);
@@ -117,58 +114,11 @@ public class TitleFinder {
 	}
 	
 	private int getTagValidityFactor(final Element tag){
-		IConfidenceFactor factor = new InHtmlTdConfidenceFactor( tag );
+		final IConfidenceFactor factor = new InHtmlTdConfidenceFactor( tag );
 		
 		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
-//		
-//		if(!tag.parent().parent().tagName().contains("td")){
-//			return 50;
-//		}
-//		return 0;
+
 	}
-//
-//	private int getSentenceLengthFactor(final Element tag){
-//		IConfidenceFactor factor = new SentenceLengthConfidenceFactor( tag );
-//		
-//		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
-//	}
-//
-//	
-//	private int getTextValidityFactor(final Element tag) {
-//			IConfidenceFactor factor = new ValidTextConfidenceFactor( tag );
-//		
-//		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
-//	}
-//
-
-
-//	private int getWordsFoundThatManyTimesInPageFactor(final Element tag, String fullText) {
-//		IConfidenceFactor factor = new WordFoundManyTimesConfidenceFactor( fullText, tag );
-//		
-//		return (int) ConfidenceFactorDecider.getImportanceBasedConfidenceFactor(factor);
-////		fullText = CustomStringUtil.trimAllWhitespace(fullText);
-////		final String textToFind = CustomStringUtil.trimAllWhitespace(tag.text());
-////		if (textToFind.length() < ConfidenceFactorDecider.MIN_TEXT_LENGTH) {
-////			return 0;
-////		}
-////
-////		int count = 0;
-////
-////		count = StringUtils.countMatches(fullText, textToFind);
-////		
-////		final int BEST_COUNT = 4;
-////		final int EXPONENTIAL_FACTOR = 2;
-////		final int MAX_FACTOR = 100;
-////		final int DEDUCTION_FACTOR = 3;
-////		
-////		final int factor =(int) (-Math.pow((count -BEST_COUNT),EXPONENTIAL_FACTOR) * DEDUCTION_FACTOR + MAX_FACTOR);
-////		
-////		return factor;
-//	}
-//
-//	private boolean isTextLengthBigEnough(final Element tag) {
-//		return tag.text().length() >= ConfidenceFactorDecider.MIN_TEXT_LENGTH;
-//	}
 
 	private int normalizeOrderFactor(final int listSize, final int factor) {
 		return (factor * MAX_ORDER_CONFIDENCE_LEVEL) / listSize;

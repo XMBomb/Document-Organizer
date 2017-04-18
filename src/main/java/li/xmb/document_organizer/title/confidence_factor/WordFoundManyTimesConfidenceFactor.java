@@ -9,13 +9,13 @@ import li.xmb.document_organizer.utils.CustomStringUtil;
 public class WordFoundManyTimesConfidenceFactor implements IConfidenceFactor
 {
 	private String fullText;
-	private Element htmlElement;
+	private final Element htmlElement;
 
 	private static final int BEST_COUNT = 4;
 	private static final int EXPONENTIAL_FACTOR = 2;
 	private static final int DEDUCTION_FACTOR = 3;
 
-	public WordFoundManyTimesConfidenceFactor ( String fullText, Element htmlElement )
+	public WordFoundManyTimesConfidenceFactor ( final String fullText, final Element htmlElement )
 	{
 		this.fullText = fullText;
 		this.htmlElement = htmlElement;
@@ -34,7 +34,7 @@ public class WordFoundManyTimesConfidenceFactor implements IConfidenceFactor
 		int count = 0;
 
 		count = StringUtils.countMatches( fullText, textToFind );
-
+		//TODO: Strategy Pattern?
 		final int factor = (int) ( -Math.pow( ( count - BEST_COUNT ), EXPONENTIAL_FACTOR ) * DEDUCTION_FACTOR
 				+ ConfidenceFactorDecider.MAX_FACTOR );
 		if ( factor < ConfidenceFactorDecider.MIN_FACTOR )

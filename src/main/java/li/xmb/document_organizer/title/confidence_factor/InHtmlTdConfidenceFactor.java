@@ -19,7 +19,7 @@ public class InHtmlTdConfidenceFactor implements IConfidenceFactor
 		if(!htmlElement.parent().parent().tagName().contains("td")){
 			return ConfidenceFactorDecider.MAX_FACTOR;
 		}
-		return ConfidenceFactorDecider.MAX_FACTOR;
+		return ConfidenceFactorDecider.MIN_FACTOR;
 	}
 
 }
